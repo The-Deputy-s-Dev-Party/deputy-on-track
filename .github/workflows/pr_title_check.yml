@@ -17,8 +17,8 @@ jobs:
       - name: Validate the title
         run: |
           pr_title="${{ github.event.pull_request.title }}"
-          regex="^(feat|fix|chore|refactor|docs|test): [a-z0-9 _-]+$"
+          regex="^(feat|fix|chore|refactor|docs|test): [a-zA-Z0-9 _-]+$"
           if [[ ! $pr_title =~ $regex ]]; then
-            echo "❌ Invalid PR's title format: '${pr_title}'. Use <change_type>: <lowercase_description>". Refer to Conventions section in README.md. >&2
+            echo "❌ Invalid PR's title format: '${pr_title}'. Use <change_type>: <description>". Refer to Conventions section in README.md. >&2
             exit 1
           fi
