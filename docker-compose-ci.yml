@@ -6,6 +6,13 @@ services:
     restart: no
     networks:
       - ci_network
+  ci_example2:
+    build:
+      context: .
+      dockerfile: ci-example/Dockerfile
+    restart: no
+    networks:
+      - ci_network
 
 networks:
   ci_network:
