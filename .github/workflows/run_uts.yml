@@ -27,4 +27,4 @@ jobs:
         sudo apt install -y make docker-compose
 
     - name: Run UTS (Unit Tests)
-      run: make run-uts
+      run: make run-uts || exit 1
