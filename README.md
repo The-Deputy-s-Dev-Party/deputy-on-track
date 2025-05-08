@@ -1,4 +1,6 @@
 # Deputy on Track
+[![CI](https://github.com/The-Deputy-s-Dev-Party/deputy-on-track/actions/workflows/run_uts.yml/badge.svg)](https://github.com/The-Deputy-s-Dev-Party/deputy-on-track/actions/workflows/run_uts.yml)
+
 
 ## Useful Links
 - [Trello](https://trello.com/b/oDkMzePx/deputy-on-track)
