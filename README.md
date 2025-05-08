@@ -19,5 +19,6 @@ Example of commit message: 'chore: update Makefile with new flags'
 Example of commit message: 'docs: add installation steps to README'
 - `test` - adding or modifying tests: Use the test prefix when adding new tests, updating existing ones, or making changes related to testing.
 Example: test: add unit tests for check-in endpoint.
+- `revert` - reverting the pull request.
 
 Note: prefix the names of your commits, pull-request, branches with the mentioned keywords to specify the type of your changes.
