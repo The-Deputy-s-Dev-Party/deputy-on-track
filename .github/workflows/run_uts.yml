@@ -23,8 +23,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        apt update
-        apt install -y make docker-compose
+        sudo apt update
+        sudo apt install -y make docker-compose
 
     - name: Run UTS (Unit Tests)
       run: make run-uts
