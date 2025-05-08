@@ -1,0 +1,24 @@
+name: Check PR's title
+on:
+  pull_request:
+    types:
+      - opened
+      - ready_for_review
+      - synchronize
+      - edited
+      - reopened
+
+jobs:
+  check_title:
+    runs-on: generic
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+      - name: Validate the title
+        run: |
+          pr_title="${{ github.event.pull_request.title }}"
+          regex="^(feat|fix|chore|refactor|docs|test): [a-z0-9 _-]+$"
+          if [[ ! $pr_title =~ $regex ]]; then
+            echo "❌ Invalid PR's title format: '${pr_title}'. Use <change_type>: <lowercase_description>". Refer to Conventions section in README.md. >&2
+            exit 1
+          fi
