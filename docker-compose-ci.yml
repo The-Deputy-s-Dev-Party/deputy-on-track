@@ -1,0 +1,12 @@
+services:
+  ci_example:
+    build:
+      context: .
+      dockerfile: ci-example/Dockerfile
+    restart: no
+    networks:
+      - ci_network
+
+networks:
+  ci_network:
+    driver: bridge
