@@ -10,7 +10,7 @@ on:
 
 jobs:
   check_title:
-    runs-on: generic
+    runs-on: ubuntu-22.04
     steps:
       - name: Check out
         uses: actions/checkout@v3
