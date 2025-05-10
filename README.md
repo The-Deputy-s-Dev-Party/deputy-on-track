@@ -5,6 +5,37 @@
 ## Useful Links
 - [Trello](https://trello.com/b/oDkMzePx/deputy-on-track)
 
+## Mock Server
+
+### Prerequisites
+- **Docker**: Required for building and running containers.
+- **Docker Compose**: Needed for defining and running multi-container Docker applications.
+- **Make**: Used for automating build tasks.
+- Create .env file by doing: `cp env-template .env`. Set all the necessary values inside it.
+
+### Build Mock Server
+Ensure that docker engine is running and execute the following command:
+```bash
+make build-server
+```
+
+### Run Mock Server
+Ensure that docker engine is running and execute the following command:
+```bash
+make run-server
+```
+
+### Stop Mock Server
+Ensure that docker engine is running and execute the following command:
+```bash
+make stop-server
+```
+
+### Mock Server's API
+You can access the server via the following link, provided it's run on localhost: http://localhost:<BACKEND_SERVER_PORT>.
+You can examine the swagger docs of mock-server's API at `/swagger-ui`
+Note: BACKEND_SERVER_PORT is taken from .env file.
+
 ## Conventions
 Keywords denoting types of your changes (commits, pull-requests, branches):
 - `feat` - a new feature: Adding something new that users or other parts of the system can interact with.
