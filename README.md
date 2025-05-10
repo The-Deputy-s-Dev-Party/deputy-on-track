@@ -32,9 +32,8 @@ make stop-server
 ```
 
 ### Mock Server's API
-You can access the server via the following link, provided it's run on localhost: http://localhost:<BACKEND_SERVER_PORT>.
-You can examine the swagger docs of mock-server's API at `/swagger-ui`
-Note: BACKEND_SERVER_PORT is taken from .env file.
+- You can access the server via the following link, provided it's run on localhost: http://localhost:<BACKEND_SERVER_PORT>. Note: BACKEND_SERVER_PORT is taken from .env file.
+- You can examine the swagger docs of mock-server's API at `/swagger-ui`
 
 ## Conventions
 Keywords denoting types of your changes (commits, pull-requests, branches):
