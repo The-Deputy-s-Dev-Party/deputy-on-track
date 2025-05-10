@@ -1,0 +1,15 @@
+services:
+  mock-server:
+    build:
+      context: .
+      dockerfile: mock-server/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "4000:4000"
+    networks:
+      - server_network
+
+networks:
+  server_network:
+    driver: bridge
