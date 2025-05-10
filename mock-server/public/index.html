@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Intake Tracker</title>
+</head>
+<body>
+    <h1>Food Intake Tracker</h1>
+
+    <h2>Add Entry</h2>
+    <form id="add-form">
+        <input type="text" id="name" placeholder="Food name" required>
+        <input type="number" id="amount" placeholder="Amount (g)" required>
+        <input type="number" id="kcal" placeholder="Energy (kcal)" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Entries</h2>
+    <button onclick="loadEntries()">Refresh</button>
+    <ul id="entries"></ul>
+
+    <h2>Update Entry</h2>
+    <form id="update-form">
+        <input type="number" id="update-index" placeholder="Index" required>
+        <input type="text" id="update-name" placeholder="New name" required>
+        <input type="number" id="update-amount" placeholder="New amount (g)" required>
+        <input type="number" id="update-kcal" placeholder="New kcal" required>
+        <button type="submit">Update</button>
+    </form>
+
+    <h2>Delete Entry</h2>
+    <form id="delete-form">
+        <input type="number" id="delete-index" placeholder="Index" required>
+        <button type="submit">Delete</button>
+    </form>
+
+    <script>
+        const API_URL = "http://localhost:4000";
+
+        document.getElementById("add-form").onsubmit = async (e) => {
+            e.preventDefault();
+            const entry = {
+                name: document.getElementById("name").value,
+                consumed_amount: parseFloat(document.getElementById("amount").value),
+                energy_kcal: parseFloat(document.getElementById("kcal").value)
+            };
+            await fetch(`${API_URL}/entries`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(entry)
+            });
+            loadEntries();
+        };
+
+        async function loadEntries() {
+            const res = await fetch(`${API_URL}/entries`);
+            const data = await res.json();
+            const list = document.getElementById("entries");
+            list.innerHTML = "";
+            data.forEach((entry, index) => {
+                const item = document.createElement("li");
+                item.textContent = `#${index}: ${entry.name} - ${entry.consumed_amount}g - ${entry.energy_kcal} kcal`;
+                list.appendChild(item);
+            });
+        }
+
+        document.getElementById("update-form").onsubmit = async (e) => {
+            e.preventDefault();
+            const index = document.getElementById("update-index").value;
+            const entry = {
+                name: document.getElementById("update-name").value,
+                consumed_amount: parseFloat(document.getElementById("update-amount").value),
+                energy_kcal: parseFloat(document.getElementById("update-kcal").value)
+            };
+            await fetch(`${API_URL}/entries/${index}`, {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(entry)
+            });
+            loadEntries();
+        };
+
+        document.getElementById("delete-form").onsubmit = async (e) => {
+            e.preventDefault();
+            const index = document.getElementById("delete-index").value;
+            await fetch(`${API_URL}/entries/${index}`, { method: "DELETE" });
+            loadEntries();
+        };
+
+        // Load entries on page load
+        loadEntries();
+    </script>
+</body>
+</html>
