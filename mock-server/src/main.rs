@@ -1,13 +1,18 @@
 use axum::{
-    extract::{Path, State},
-    http::{HeaderValue, Method, StatusCode},
-    response::{Html, IntoResponse},
-    routing::{get, post, put},
     Json, Router,
+    extract::{Path, State},
+    http::{Method, StatusCode},
+    response::IntoResponse,
+    routing::{post, put},
 };
+use dotenv::dotenv;
 use serde::{Deserialize, Serialize};
-use std::{net::SocketAddr, sync::{Arc, Mutex}};
-use tokio::fs;
+use std::env;
+use std::{
+    net::SocketAddr,
+    sync::{Arc, Mutex},
+};
+use tower_http::cors::Any;
 use tower_http::cors::CorsLayer;
 use utoipa::{OpenApi, ToSchema};
 use utoipa_swagger_ui::SwaggerUi;
@@ -35,11 +40,11 @@ type AppState = Arc<Mutex<Vec<FoodIntakeEntry>>>;
 struct ApiDoc;
 
 #[tokio::main]
-async fn main() {
-    let frontend_port = 3000;
-    let backend_port = 4000;
+async fn main() -> anyhow::Result<()> {
+    dotenv().ok();
+    let backend_port = env::var("BACKEND_SERVER_PORT")?.parse()?;
 
-    let backend = async {
+    tokio::spawn(async move {
         let state: AppState = Arc::new(Mutex::new(Vec::new()));
 
         let app = Router::new()
@@ -49,33 +54,22 @@ async fn main() {
             .with_state(state.clone())
             .layer(
                 CorsLayer::new()
-                    .allow_origin(format!("http://localhost:{}", frontend_port).parse::<HeaderValue>().unwrap())
+                    .allow_origin(Any)
                     .allow_methods([Method::GET, Method::POST, Method::PUT, Method::DELETE])
                     .allow_headers([axum::http::header::CONTENT_TYPE]),
             );
 
         serve(app, backend_port).await;
-    };
+    })
+    .await?;
 
-    let frontend = async {
-        let app = Router::new().route("/", get(html));
-        serve(app, frontend_port).await;
-    };
-
-    tokio::join!(frontend, backend);
+    Ok(())
 }
 
 async fn serve(app: Router, port: u16) {
     let addr = SocketAddr::from(([0, 0, 0, 0], port));
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();
-}
-
-async fn html() -> impl IntoResponse {
-    match fs::read_to_string("public/index.html").await {
-        Ok(contents) => Html(contents),
-        Err(_) => Html("<h1>Error loading index.html</h1>".to_string()),
-    }
 }
 
 #[utoipa::path(

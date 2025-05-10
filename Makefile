@@ -1,13 +1,16 @@
 DC ?= docker compose
 DC_FLAGS = "--remove-orphans"
 
-.PHONY: run-uts
+.PHONY: build-server run-server stop-server run-uts
 
 build-server:
 	$(DC) build
 
 run-server: build-server
-	$(DC) up $(DC_FLAGS)
+	$(DC) up mock-server $(DC_FLAGS)
+
+stop-server:
+	$(DC) down mock-server $(DC_FLAGS)
 
 run-uts:
 	@UTS_FAILED=0; 																											\
