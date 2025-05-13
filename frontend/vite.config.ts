@@ -9,6 +9,10 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     server: {
       port: Number(env.VITE_FRONTEND_PORT)||5173,
-    }
+    },
+    define: {
+      'import.meta.env.VITE_FRONTEND_PORT': JSON.stringify(env.VITE_FRONTEND_PORT),
+      'import.meta.env.VITE_BACKEND_SERVER_PORT': JSON.stringify(env.VITE_BACKEND_SERVER_PORT)
+    },
   };
 });
