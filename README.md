@@ -35,6 +35,15 @@ make stop-server
 - You can access the server via the following link, provided it's run on localhost: http://localhost:<BACKEND_SERVER_PORT>. Note: BACKEND_SERVER_PORT is taken from .env file.
 - You can examine the swagger docs of mock-server's API at `/swagger-ui`
 
+## Frontend build
+
+### How to run a build
+To start the project execute the commands below in order:
+```
+cd frontend
+npm run dev
+```
+
 ## Conventions
 Keywords denoting types of your changes (commits, pull-requests, branches):
 - `feat` - a new feature: Adding something new that users or other parts of the system can interact with.
