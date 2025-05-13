@@ -35,6 +35,48 @@ make stop-server
 - You can access the server via the following link, provided it's run on localhost: http://localhost:<BACKEND_SERVER_PORT>. Note: BACKEND_SERVER_PORT is taken from .env file.
 - You can examine the swagger docs of mock-server's API at `/swagger-ui`
 
+## Frontend build
+
+### Prerequisites
+- **NPM**:Required for installing additional packages and running scripts.
+- **Node.js**: Needed for configuration and running npm.
+- Create .env file by doing: `cp env-template .env`. Set all the necessary values inside it (If you already have one, just set the values)
+
+
+### How to run a build
+To start the project you need to download and install node.js and npm. Use the following link:
+- [Node.js & NPM](https://trello.com/b/oDkMzePx/deputy-on-track)
+
+After setting up **Node.js** check versions executing next commands:
+
+### For checking Node.j version
+```bash
+node -v
+```
+
+### For checking NPM version
+```bash
+npm -v
+```
+
+If both commands succeeded then install all necessary packages including vite to run a build
+### For installing node_modules
+```bash
+npm i
+```
+If you are in root directory, move to **/frontend** directory with following command:
+```bash
+cd frontend
+```
+
+### For running a build
+```bash
+npm run dev
+```
+### Access in the browser
+You can access the server via the following link, provided it's run on localhost: http://localhost:<VITE_FRONTEND_PORT>. Note: VITE_FRONTEND_PORT is taken from .env file.
+
+
 ## Conventions
 Keywords denoting types of your changes (commits, pull-requests, branches):
 - `feat` - a new feature: Adding something new that users or other parts of the system can interact with.
