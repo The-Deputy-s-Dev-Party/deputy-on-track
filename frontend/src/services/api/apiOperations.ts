@@ -10,11 +10,27 @@ export const axiosInstance= axios.create({
 })
 
 export const apiCalls=  {
-     createEntry: async({name,energy_kcal,consumed_amount}:IEntryFormData) =>{
-         await axiosInstance.post<IEntryFormData>('/entries', {consumed_amount:Number(consumed_amount),energy_kcal:Number(energy_kcal),name})
+    createEntry: async ({ name, energy_kcal, consumed_amount }: IEntryFormData): Promise<IMeal> => {
+        const response = await axiosInstance.post<IMeal>('/entries', {
+            name,
+            energy_kcal: Number(energy_kcal),
+            consumed_amount: Number(consumed_amount),
+        });
+        return response.data;
     },
-    getMeat: async ():Promise<IMeal[]>=>{
+    getMeal: async ():Promise<IMeal[]>=>{
          const {data} =  await axiosInstance.get<IMeal[]>('/entries')
             return data
+    },
+    deleteMeal: async (name:string):Promise<void> =>{
+        await axiosInstance.delete(`/entries/${name}`,)
+    },
+    updateMeal: async ({ name, energy_kcal, consumed_amount }: IEntryFormData,title:string):Promise<IMeal> =>{
+        const response = await axiosInstance.put(`/entries/${title}`,{
+            name,
+            energy_kcal: Number(energy_kcal),
+            consumed_amount: Number(consumed_amount),
+        })
+        return response.data
     }
 }

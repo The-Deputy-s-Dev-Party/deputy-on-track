@@ -2,18 +2,20 @@ import {useForm} from "react-hook-form";
 import type {IEntryFormData} from "../../models/entry-form-data/IEntryFormData.ts";
 import {apiCalls} from "../../services/api/apiOperations.ts";
 
+type Props = {
+    onAddMeal: () => void;
+};
 
+export const EntryForm = ({ onAddMeal }: Props) => {
+    const { register, handleSubmit, reset } = useForm<IEntryFormData>();
 
-export const EntryForm = () => {
-
-    const {register,handleSubmit,reset} = useForm<IEntryFormData>()
-    const onSubmit = async (formData:IEntryFormData) => {
-    console.log(formData)
-        await apiCalls.createEntry(formData)
-        reset()
-    }
+    const onSubmit = async (formData: IEntryFormData) => {
+        await apiCalls.createEntry(formData);
+        onAddMeal();
+        reset();
+    };
     return (
-        <div>
+        <div className={'form-container'}>
             <form className={'form'} onSubmit={handleSubmit(onSubmit)}>
                 <label>
                     Enter meal

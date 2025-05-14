@@ -1,20 +1,20 @@
-import {useEffect, useState} from "react";
+import {type Dispatch, type FC, memo, type SetStateAction} from "react";
 import type {IMeal} from "../../models/meal/IMeal.ts";
-import {apiCalls} from "../../services/api/apiOperations.ts";
+import EntryListItem from "../entry-list-item/EntryListItem.tsx";
 
-export const EntryList = () => {
-   const [meals,setMeals] = useState<IMeal[]>([])
-    useEffect(() => {
-       apiCalls.getMeat()
-            .then(data=>setMeals(data))
-    }, [meals]);
+interface Props{
+    meals:IMeal[]
+    setMeals:Dispatch<SetStateAction<IMeal[]>>
+}
+
+export const EntryList:FC<Props> = memo(({ meals,setMeals }: Props) => {
     return (
-        <div className={'list-container'}>
-            {
-                meals.map((meal,index) => <div key={index}> {meal.name}</div>)
-            }
+        <div className={"list-container"}>
+            {meals.map((meal, index) => (
+                <EntryListItem key={index} item={meal} setMeals={setMeals}/>
+            ))}
         </div>
     );
-};
+});
 
 export default EntryList;

@@ -41,15 +41,19 @@
   display: flex;
   gap: 40px;
 }
+.form-container{
+ display: flex;
 
+}
 .form{
   padding: 20px;
   border: 1px solid white;
   display: flex;
   flex-direction: column;
+  height: 170px ;
   gap: 20px;
   border-radius: 10px;
-
+  align-self: center;
 }
 
 label{
@@ -59,9 +63,45 @@ label{
 }
 
 .list-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
   border: 1px solid white;
   padding: 20px;
   border-radius: 10px;
   max-height: 600px;
-  width: 280px;
+  width: 400px;
+  overflow-y: auto;
+}
+
+.item-container{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons{
+  display: flex;
+  gap: 10px;
+  visibility: hidden;
+}
+
+.buttons-edit-mode{
+  display: flex;
+  gap: 10px;
+}
+
+.item-container:hover .buttons{
+  visibility: visible;
+}
+
+
+.item-container input{
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.37);
+  padding: 4px;
+  border-radius: 4px;
+  width: 40px;
 }
