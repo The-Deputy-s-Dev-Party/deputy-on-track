@@ -49,7 +49,7 @@ async fn main() -> anyhow::Result<()> {
 
         let app = Router::new()
             .route("/entries", post(create_entry).get(list_entries))
-            .route("/entries/{index}", put(update_entry).delete(delete_entry))
+            .route("/entries/{name}", put(update_entry).delete(delete_entry))
             .merge(SwaggerUi::new("/swagger-ui").url("/api-doc/openapi.json", ApiDoc::openapi()))
             .with_state(state.clone())
             .layer(
@@ -107,10 +107,10 @@ async fn list_entries(State(state): State<AppState>) -> impl IntoResponse {
 
 #[utoipa::path(
     put,
-    path = "/entries/{index}",
+    path = "/entries/{name}",
     request_body = FoodIntakeEntry,
     params(
-        ("index" = usize, Path, description = "Index of the entry to update")
+        ("name" = String, Path, description = "Name of the entry to update")
     ),
     responses(
         (status = 200, description = "Entry updated successfully"),
@@ -120,25 +120,25 @@ async fn list_entries(State(state): State<AppState>) -> impl IntoResponse {
     tag = "Food Entries"
 )]
 async fn update_entry(
-    Path(index): Path<usize>,
+    Path(name): Path<String>,
     State(state): State<AppState>,
     Json(updated): Json<FoodIntakeEntry>,
 ) -> impl IntoResponse {
     let mut entries = state.lock().unwrap();
 
-    if index >= entries.len() {
-        return StatusCode::NOT_FOUND.into_response();
+    if let Some(entry) = entries.iter_mut().find(|entry| entry.name == name) {
+        *entry = updated;
+        StatusCode::OK
+    } else {
+        StatusCode::NOT_FOUND
     }
-
-    entries[index] = updated;
-    StatusCode::OK.into_response()
 }
 
 #[utoipa::path(
     delete,
-    path = "/entries/{index}",
+    path = "/entries/{name}",
     params(
-        ("index" = usize, Path, description = "Index of the entry to delete")
+        ("name" = String, Path, description = "Name of the entry to delete")
     ),
     responses(
         (status = 204, description = "Entry deleted successfully"),
@@ -148,15 +148,15 @@ async fn update_entry(
     tag = "Food Entries"
 )]
 async fn delete_entry(
-    Path(index): Path<usize>,
+    Path(name): Path<String>,
     State(state): State<AppState>,
 ) -> impl IntoResponse {
     let mut entries = state.lock().unwrap();
 
-    if index >= entries.len() {
-        return StatusCode::NOT_FOUND.into_response();
+    if let Some(index) = entries.iter().position(|entry| entry.name == name) {
+        entries.remove(index);
+        StatusCode::NO_CONTENT
+    } else {
+        StatusCode::NOT_FOUND
     }
-
-    entries.remove(index);
-    StatusCode::NO_CONTENT.into_response()
 }
