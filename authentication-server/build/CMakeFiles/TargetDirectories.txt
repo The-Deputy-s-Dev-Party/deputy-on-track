@@ -1,0 +1,3 @@
+C:/IT/deputy-on-track/authentication-server/build/CMakeFiles/authentication_server.dir
+C:/IT/deputy-on-track/authentication-server/build/CMakeFiles/edit_cache.dir
+C:/IT/deputy-on-track/authentication-server/build/CMakeFiles/rebuild_cache.dir
