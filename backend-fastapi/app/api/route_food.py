@@ -35,8 +35,7 @@ async def food_filter_by_date(request: Request, session: AsyncSession = Depends(
 
 @router.get('/{food_id}', response_model=FoodOut)
 async def get_food_by_id(food_id: int, session: AsyncSession = Depends(get_async_session)):
-    result = await session.execute(select(FoodModel).filter(FoodModel.id == food_id))
-    food = result.scalars().first()
+    food = await session.scalar(select(FoodModel).filter(FoodModel.id == food_id))
     if food is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Food not found')
     return food
@@ -44,8 +43,7 @@ async def get_food_by_id(food_id: int, session: AsyncSession = Depends(get_async
 
 @router.put('/{food_id}', response_model=FoodOut)
 async def update_food(food_id:int, food: CreateFood, session: AsyncSession = Depends(get_async_session)):
-    result = await session.execute(select(FoodModel).filter(FoodModel.id == food_id))
-    db_food = result.scalars().first()
+    db_food = await session.scalar(select(FoodModel).filter(FoodModel.id == food_id))
     if db_food is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Food not found')
 
@@ -62,8 +60,7 @@ async def update_food(food_id:int, food: CreateFood, session: AsyncSession = Dep
 
 @router.delete('/{food_id}')
 async def delete_food(food_id: int, session: AsyncSession = Depends(get_async_session)):
-    result = await session.execute(select(FoodModel).filter(FoodModel.id == food_id))
-    food = result.scalars().first()
+    food = await session.scalar(select(FoodModel).filter(FoodModel.id == food_id))
     if food is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Food not found')
     await session.delete(food)

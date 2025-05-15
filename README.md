@@ -5,35 +5,45 @@
 ## Useful Links
 - [Trello](https://trello.com/b/oDkMzePx/deputy-on-track)
 
-## Mock Server
+## Docker Build and Start
 
 ### Prerequisites
 - **Docker**: Required for building and running containers.
 - **Docker Compose**: Needed for defining and running multi-container Docker applications.
-- **Make**: Used for automating build tasks.
 - Create .env file by doing: `cp env-template .env`. Set all the necessary values inside it.
 
-### Build Mock Server
+### Build Docker system
 Ensure that docker engine is running and execute the following command:
 ```bash
-make build-server
+docker compose build
 ```
 
-### Run Mock Server
+### Run Docker system
 Ensure that docker engine is running and execute the following command:
 ```bash
-make run-server
+docker compose up
 ```
 
-### Stop Mock Server
+### If you want Run and Build
 Ensure that docker engine is running and execute the following command:
 ```bash
-make stop-server
+docker compose up --build
 ```
+
+### Stop Docker system
+Ensure that docker engine is running and execute the following command:
+```bash
+docker stop $(docker ps -q)
+```
+or in active terminal use ```ctrl+C```
 
 ### Mock Server's API
 - You can access the server via the following link, provided it's run on localhost: http://localhost:<BACKEND_SERVER_PORT>. Note: BACKEND_SERVER_PORT is taken from .env file.
 - You can examine the swagger docs of mock-server's API at `/swagger-ui`
+
+## FastAPI Server's API
+- You can access the server via the following link, provided it's run on localhost: http://127.0.0.1:<BACKEND_FASTAPI_PORT>. Note: BACKEND_FASTAPI_PORT is taken from .env file.
+- You can examine the swagger docs of fastAPI-server's API at `/docs`
 
 ## Frontend build
 
@@ -75,6 +85,8 @@ npm run dev
 ```
 ### Access in the browser
 You can access the server via the following link, provided it's run on localhost: http://localhost:<VITE_FRONTEND_PORT>. Note: VITE_FRONTEND_PORT is taken from .env file.
+
+
 
 
 ## Conventions
