@@ -11,6 +11,42 @@ services:
     networks:
       - server_network
 
+  db:
+    image: mysql:8
+    env_file:
+      - .env
+    ports:
+      - '${MYSQL_PORT}:${MYSQL_PORT}'
+    volumes:
+      - ./mysql:/var/lib/mysql
+    restart: on-failure
+    networks:
+      - server_network
+
+  web:
+    image: nginx:alpine
+    volumes:
+      - ./client:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    env_file:
+      - .env
+    ports:
+      - '${VITE_FRONTEND_PORT}:${VITE_FRONTEND_PORT}'
+    networks:
+      - server_network
+
+  fastapi:
+    build:
+      context: backend-fastapi
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend-fastapi:/app
+    env_file:
+      - .env
+    ports:
+      - '${BACKEND_FASTAPI_PORT}:${BACKEND_FASTAPI_PORT}'
+    networks:
+      - server_network
 networks:
   server_network:
     driver: bridge
