@@ -41,6 +41,26 @@ or in active terminal use ```ctrl+C```
 - You can access the server via the following link, provided it's run on localhost: http://localhost:<BACKEND_FASTAPI_PORT>/api/. Note: BACKEND_FASTAPI_PORT is taken from .env file.
 - You can examine the swagger docs of fastAPI-server's API at `/docs`
 
+## Authentication server
+### Prerequisites
+- **Make**: Used for automating build tasks.
+- **CMake**: Used for build tasks.
+- Any C compiler (e.g. GCC).
+To build authentication server, run the followind commands:
+```
+cd authentication-server
+mkdir build
+cd build
+cmake .. -G "Unix Makefiles"
+make
+```
+
+To run authentication server, run the `authentication_server` executable in the `build` directory. Example for Windows:
+```
+./authentication_server.exe
+```
+
+
 ## Frontend build
 
 ### For build 
