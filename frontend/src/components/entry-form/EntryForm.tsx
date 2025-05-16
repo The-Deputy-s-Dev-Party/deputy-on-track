@@ -10,7 +10,9 @@ export const EntryForm = ({ onAddMeal }: Props) => {
     const { register, handleSubmit, reset } = useForm<IEntryFormData>();
 
     const onSubmit = async (formData: IEntryFormData) => {
-        await apiCalls.createEntry(formData);
+        if(await apiCalls.createEntry(formData) === undefined){
+            return
+        }
         onAddMeal();
         reset();
     };
@@ -23,7 +25,7 @@ export const EntryForm = ({ onAddMeal }: Props) => {
                 </label>
                 <label>
                     Enter kkal
-                    <input type="number" {...register('energy_kcal')}/>
+                    <input type="text" {...register('energy_kcal')}/>
                 </label>
                 <label>
                     Enter weight
@@ -34,5 +36,3 @@ export const EntryForm = ({ onAddMeal }: Props) => {
         </div>
     );
 };
-
-export default EntryForm;
