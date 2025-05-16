@@ -30,7 +30,7 @@ Ensure that docker engine is running and execute the following command:
 docker compose up --build
 ```
 
-### Stop Docker system
+### Stop Docker systemg
 Ensure that docker engine is running and execute the following command:
 ```bash
 docker stop $(docker ps -q)
