@@ -1,22 +1,10 @@
 services:
-  mock-server:
-    build:
-      context: .
-      dockerfile: mock-server/Dockerfile
-    restart: unless-stopped
-    env_file:
-      - .env
-    ports:
-      - "${VITE_BACKEND_SERVER_PORT}:${VITE_BACKEND_SERVER_PORT}"
-    networks:
-      - server_network
-
   db:
     image: mysql:8
     env_file:
       - .env
     ports:
-      - '${MYSQL_PORT}:${MYSQL_PORT}'
+      - '${MYSQL_PORT}:3306'
     volumes:
       - ./mysql:/var/lib/mysql
     restart: on-failure
@@ -31,7 +19,7 @@ services:
     env_file:
       - .env
     ports:
-      - '${VITE_FRONTEND_PORT}:${VITE_FRONTEND_PORT}'
+      - '${VITE_FRONTEND_PORT}:80'
     networks:
       - server_network
 
@@ -44,7 +32,7 @@ services:
     env_file:
       - .env
     ports:
-      - '${BACKEND_FASTAPI_PORT}:${BACKEND_FASTAPI_PORT}'
+      - '${BACKEND_FASTAPI_PORT}:8000'
     networks:
       - server_network
 networks:
