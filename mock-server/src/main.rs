@@ -42,7 +42,7 @@ struct ApiDoc;
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     dotenv().ok();
-    let backend_port = env::var("BACKEND_SERVER_PORT")?.parse()?;
+    let backend_port = env::var("VITE_BACKEND_SERVER_PORT")?.parse()?;
 
     tokio::spawn(async move {
         let state: AppState = Arc::new(Mutex::new(Vec::new()));
