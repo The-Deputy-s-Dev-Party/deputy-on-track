@@ -1,16 +1,40 @@
 services:
-  mock-server:
-    build:
-      context: .
-      dockerfile: mock-server/Dockerfile
-    restart: unless-stopped
+  db:
+    image: mysql:8
     env_file:
       - .env
     ports:
-      - "${VITE_BACKEND_SERVER_PORT}:${VITE_BACKEND_SERVER_PORT}"
+      - '${MYSQL_PORT}:3306'
+    volumes:
+      - ./mysql:/var/lib/mysql
+    restart: on-failure
     networks:
       - server_network
 
+  web:
+    image: nginx:alpine
+    volumes:
+      - ./client:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    env_file:
+      - .env
+    ports:
+      - '${VITE_FRONTEND_PORT}:80'
+    networks:
+      - server_network
+
+  fastapi:
+    build:
+      context: backend-fastapi
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend-fastapi:/app
+    env_file:
+      - .env
+    ports:
+      - '${BACKEND_FASTAPI_PORT}:8000'
+    networks:
+      - server_network
 networks:
   server_network:
     driver: bridge
