@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     ports:
-      - "${BACKEND_SERVER_PORT}:${BACKEND_SERVER_PORT}"
+      - "${VITE_BACKEND_SERVER_PORT}:${VITE_BACKEND_SERVER_PORT}"
     networks:
       - server_network
 
