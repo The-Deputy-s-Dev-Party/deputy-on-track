@@ -3,19 +3,19 @@ import type {Dispatch, SetStateAction} from "react";
 import type {IMeal} from "../../../models/meal/IMeal.ts";
 
 export const buttonHandlers = {
-    handleDelete: async (name:string,cb:Dispatch<SetStateAction<IMeal[]>>) =>{
+    handleDelete: async (name: string, callbackSetMeals: Dispatch<SetStateAction<IMeal[]>>) => {
         await apiCalls.deleteMeal(name)
         const updatedMeals = await apiCalls.getMeal()
-        cb(updatedMeals)
+        callbackSetMeals(updatedMeals)
     },
-     handleEditCancel: (state:boolean,cb:Dispatch<SetStateAction<boolean>>) =>{
-         cb(prevState => !prevState)
-        console.log(state)
+    handleToggleEdit: ( callbackEditToggle:
+        Dispatch<SetStateAction<boolean>>) => {
+        callbackEditToggle(prevState => !prevState)
     },
-    handleSave: async (cb1:Dispatch<SetStateAction<IMeal[]>>,cb2:Dispatch<SetStateAction<boolean>>) =>{
+    handleSave: async (callbackUpdateMeals: Dispatch<SetStateAction<IMeal[]>>, callbackToggleEdit: Dispatch<SetStateAction<boolean>>) => {
 
         const updatedMeals = await apiCalls.getMeal()
-        cb1(updatedMeals)
-        cb2(prevState => !prevState)
+        callbackUpdateMeals(updatedMeals)
+        callbackToggleEdit(prevState => !prevState)
     }
 }

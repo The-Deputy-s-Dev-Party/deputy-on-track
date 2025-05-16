@@ -1,6 +1,6 @@
 import {type Dispatch, type FC, memo, type SetStateAction} from "react";
 import type {IMeal} from "../../models/meal/IMeal.ts";
-import EntryListItem from "../entry-list-item/EntryListItem.tsx";
+import {EntryListItem} from "../entry-list-item/EntryListItem.tsx";
 
 interface Props{
     meals:IMeal[]
@@ -16,5 +16,3 @@ export const EntryList:FC<Props> = memo(({ meals,setMeals }: Props) => {
         </div>
     );
 });
-
-export default EntryList;

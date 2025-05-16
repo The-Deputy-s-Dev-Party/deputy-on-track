@@ -15,7 +15,9 @@ export const EntryListItem:FC<Props> = ({item,setMeals}) => {
     const [isEditable, setIsEditable] = useState(false)
     
     const update = async (formData:IEntryFormData) => {
-        await apiCalls.updateMeal(formData,item.name)
+        if(await apiCalls.updateMeal(formData,item.name)===undefined){
+            return
+        }
         buttonHandlers.handleSave(setMeals,setIsEditable)
     }
 
@@ -24,7 +26,7 @@ export const EntryListItem:FC<Props> = ({item,setMeals}) => {
             <div className={'item-container'}>
                 {item.name} - {item.consumed_amount} - {item.energy_kcal}
                 <div className={'buttons'}>
-                    <button onClick={() => buttonHandlers.handleEditCancel(isEditable,setIsEditable)}>Edit</button>
+                    <button onClick={() => buttonHandlers.handleToggleEdit(setIsEditable)}>Edit</button>
                     <button onClick={() => buttonHandlers.handleDelete(item.name,setMeals)}>Remove</button>
                 </div>
             </div>
@@ -37,12 +39,10 @@ export const EntryListItem:FC<Props> = ({item,setMeals}) => {
                     <form onSubmit={handleSubmit(update)}>
                         <button>Save</button>
                     </form>
-                    <button onClick={()=>buttonHandlers.handleEditCancel(isEditable,setIsEditable)}>Cancel</button>
+                    <button onClick={()=>buttonHandlers.handleToggleEdit(setIsEditable)}>Cancel</button>
                 </div>
             </div>
         )
 
     );
 };
-
-export default EntryListItem;
