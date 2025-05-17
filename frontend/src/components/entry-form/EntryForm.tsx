@@ -6,11 +6,12 @@ type Props = {
     onAddMeal: () => void;
 };
 
-export const EntryForm = ({ onAddMeal }: Props) => {
-    const { register, handleSubmit, reset } = useForm<IEntryFormData>();
+export const EntryForm = ({onAddMeal}: Props) => {
+    const {register, handleSubmit, reset} = useForm<IEntryFormData>();
 
     const onSubmit = async (formData: IEntryFormData) => {
-        if(await apiCalls.createEntry(formData) === undefined){
+        console.log(formData)
+        if (await apiCalls.createEntry(formData) === undefined) {
             return
         }
         onAddMeal();
@@ -24,13 +25,30 @@ export const EntryForm = ({ onAddMeal }: Props) => {
                     <input type="text" {...register('name')}/>
                 </label>
                 <label>
-                    Enter kkal
-                    <input type="text" {...register('energy_kcal')}/>
-                </label>
-                <label>
                     Enter weight
-                    <input type="number" {...register('consumed_amount')}/>
+                    <input type="number" {...register('weight')}/>
                 </label>
+
+                <label>
+                    Enter calories
+                    <input type="text" {...register('calories')}/>
+                </label>
+
+                <label>
+                    Enter proteins
+                    <input type="text" {...register('proteins')}/>
+                </label>
+
+                <label>
+                    Enter fats
+                    <input type="text" {...register('fats')}/>
+                </label>
+
+                <label>
+                    Enter carbohydrates
+                    <input type="text" {...register('carbohydrates')}/>
+                </label>
+
                 <button> Add food</button>
             </form>
         </div>

@@ -50,7 +50,6 @@
   border: 1px solid white;
   display: flex;
   flex-direction: column;
-  height: 170px ;
   gap: 20px;
   border-radius: 10px;
   align-self: center;
@@ -71,7 +70,7 @@ label{
   padding: 20px;
   border-radius: 10px;
   max-height: 600px;
-  width: 400px;
+  width: 500px;
   overflow-y: auto;
 }
 

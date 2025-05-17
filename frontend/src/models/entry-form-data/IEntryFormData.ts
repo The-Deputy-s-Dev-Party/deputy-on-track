@@ -1,5 +1,8 @@
 export interface IEntryFormData{
-    name:string,
-    consumed_amount:number,
-    energy_kcal:number
+    name: string,
+    weight: number,
+    calories: number,
+    proteins: number,
+    fats: number,
+    carbohydrates: number,
 }

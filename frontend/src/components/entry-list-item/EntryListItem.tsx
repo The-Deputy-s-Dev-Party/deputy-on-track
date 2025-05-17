@@ -15,7 +15,7 @@ export const EntryListItem:FC<Props> = ({item,setMeals}) => {
     const [isEditable, setIsEditable] = useState(false)
     
     const update = async (formData:IEntryFormData) => {
-        if(await apiCalls.updateMeal(formData,item.name)===undefined){
+        if(await apiCalls.updateMeal(formData,item.id)===undefined){
             return
         }
         buttonHandlers.handleSave(setMeals,setIsEditable)
@@ -24,17 +24,20 @@ export const EntryListItem:FC<Props> = ({item,setMeals}) => {
     return (
         !isEditable ? (
             <div className={'item-container'}>
-                {item.name} - {item.consumed_amount} - {item.energy_kcal}
+                {item.name} - {item.weight} - {item.calories} - {item.proteins} - {item.fats} - {item.carbohydrates}
                 <div className={'buttons'}>
                     <button onClick={() => buttonHandlers.handleToggleEdit(setIsEditable)}>Edit</button>
-                    <button onClick={() => buttonHandlers.handleDelete(item.name,setMeals)}>Remove</button>
+                    <button onClick={() => buttonHandlers.handleDelete(item.id,setMeals)}>Remove</button>
                 </div>
             </div>
         ): (
             <div className={'item-container'}>
                 <input type="text" {...register('name')} defaultValue={item.name}/> -
-                <input type="text" {...register('consumed_amount')} defaultValue={item.consumed_amount}/> -
-                <input type="text" {...register('energy_kcal')} defaultValue={item.energy_kcal}/>
+                <input type="text" {...register('weight')} defaultValue={item.weight}/> -
+                <input type="text" {...register('calories')} defaultValue={item.calories}/>
+                <input type="text" {...register('proteins')} defaultValue={item.proteins}/>
+                <input type="text" {...register('fats')} defaultValue={item.fats}/>
+                <input type="text" {...register('carbohydrates')} defaultValue={item.carbohydrates}/>
                 <div className={'buttons-edit-mode'}>
                     <form onSubmit={handleSubmit(update)}>
                         <button>Save</button>
