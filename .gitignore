@@ -2,3 +2,4 @@
 .idea
 /.venv/
 /mysql/
+/.make/

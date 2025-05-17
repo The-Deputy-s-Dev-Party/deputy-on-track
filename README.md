@@ -1,16 +1,17 @@
 # Deputy on Track
 [![CI](https://github.com/The-Deputy-s-Dev-Party/deputy-on-track/actions/workflows/run_uts.yml/badge.svg)](https://github.com/The-Deputy-s-Dev-Party/deputy-on-track/actions/workflows/run_uts.yml)
 
-
 ## Useful Links
 - [Trello](https://trello.com/b/oDkMzePx/deputy-on-track)
 
-## Docker Build and Start
-
-### Prerequisites
+## Prerequisites
 - **Docker**: Required for building and running containers.
 - **Docker Compose**: Needed for defining and running multi-container Docker applications.
+- **npm**: Needed for managing JavaScript/TypeScript dependencies and running project scripts.
+- **npm-watch**: `npm install --save-dev npm-watch`
 - Create .env file by doing: `cp env-template .env`. Set all the necessary values inside it.
+
+## Docker Build and Start
 
 ### Build Docker system
 Ensure that docker engine is running and execute the following command:
@@ -43,16 +44,13 @@ or in active terminal use ```ctrl+C```
 
 ## Frontend build
 
-### For build 
+### For build
 ```bash
 npm run watch
 ```
 
 ### Access in the browser
 You can access the server via the following link, provided it's run on localhost: http://localhost:<VITE_FRONTEND_PORT>. Note: VITE_FRONTEND_PORT is taken from .env file.
-
-
-
 
 ## Conventions
 Keywords denoting types of your changes (commits, pull-requests, branches):

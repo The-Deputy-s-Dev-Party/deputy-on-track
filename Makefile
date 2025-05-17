@@ -5,8 +5,9 @@ DC_FLAGS = "--remove-orphans"
 
 build-server:
 	$(DC) build
+	touch .make/build-completed
 
-run-server: build-server
+run-server: .make/build-completed
 	$(DC) up mock-server $(DC_FLAGS)
 
 stop-server:
@@ -14,7 +15,7 @@ stop-server:
 
 run-uts:
 	@UTS_FAILED=0; 																											\
-	@UTS_FLAGS="--remove-orphans --force-recreate"; 																		\
+	@UTS_FLAGS="--force-recreate"; 																							\
 																															\
 	$(DC) -f docker-compose-ci.yml build; 																					\
 	$(DC) -f docker-compose-ci.yml up ci_example  $(DC_FLAGS) $(UTS_FLAGS) --exit-code-from ci_example  || UTS_FAILED=1; 	\
