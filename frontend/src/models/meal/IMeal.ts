@@ -1,5 +1,10 @@
 export interface IMeal {
-    name:string,
-    consumed_amount:number,
-    energy_kcal:number
+    id:number,
+    name: string,
+    weight: number,
+    calories: number,
+    proteins: number,
+    fats: number,
+    carbohydrates: number,
+    created_at:string,
 }
