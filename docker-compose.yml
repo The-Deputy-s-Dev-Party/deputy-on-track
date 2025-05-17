@@ -12,10 +12,10 @@ services:
       - server_network
 
   web:
-    image: nginx:alpine
-    volumes:
-      - ./client:/usr/share/nginx/html
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    image: ${FRONTEND_IMAGE}
     env_file:
       - .env
     ports:
@@ -27,6 +27,7 @@ services:
     build:
       context: backend-fastapi
       dockerfile: Dockerfile
+    image: ${BACKEND_IMAGE}
     volumes:
       - ./backend-fastapi:/app
     env_file:

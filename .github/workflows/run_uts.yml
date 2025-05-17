@@ -1,14 +1,10 @@
 name: Run UTs
 
 on:
-  pull_request:
-    branches:
-      - develop
+  workflow_run:
+    workflows: ["Stage Delivery"]
     types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
+      - completed
 
 jobs:
   test:
@@ -16,7 +12,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Docker
       uses: docker/setup-buildx-action@v2
