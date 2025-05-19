@@ -1,5 +1,5 @@
-CMakeFiles/authentication_server.dir/src/main.c.obj: \
- C:/IT/deputy-on-track/authentication-server/src/main.c \
+CMakeFiles/authentication_server.dir/main.c.obj: \
+ C:/IT/deputy-on-track/authentication-server/main.c \
  C:/gcc/mingw64/x86_64-w64-mingw32/include/stdio.h \
  C:/gcc/mingw64/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
  C:/gcc/mingw64/x86_64-w64-mingw32/include/corecrt.h \

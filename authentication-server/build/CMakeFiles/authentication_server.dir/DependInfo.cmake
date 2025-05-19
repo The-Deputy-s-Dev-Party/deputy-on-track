@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/IT/deputy-on-track/authentication-server/src/main.c" "CMakeFiles/authentication_server.dir/src/main.c.obj" "gcc" "CMakeFiles/authentication_server.dir/src/main.c.obj.d"
+  "C:/IT/deputy-on-track/authentication-server/main.c" "CMakeFiles/authentication_server.dir/main.c.obj" "gcc" "CMakeFiles/authentication_server.dir/main.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

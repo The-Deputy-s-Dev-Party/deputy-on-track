@@ -1,0 +1,21 @@
+CMakeFiles/authentication_server.dir/src/user_info.c.obj: \
+ C:/IT/deputy-on-track/authentication-server/src/user_info.c \
+ C:/IT/deputy-on-track/authentication-server/src/user_info.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/stdlib.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/corecrt.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/_mingw.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/vadefs.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
+ C:/gcc/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/limits.h \
+ C:/gcc/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/limits.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/crtdefs.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/malloc.h \
+ C:/gcc/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mm_malloc.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/errno.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/string.h \
+ C:/gcc/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h

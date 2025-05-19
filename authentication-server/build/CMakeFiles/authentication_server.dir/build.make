@@ -69,28 +69,28 @@ include CMakeFiles/authentication_server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/authentication_server.dir/flags.make
 
-CMakeFiles/authentication_server.dir/src/main.c.obj: CMakeFiles/authentication_server.dir/flags.make
-CMakeFiles/authentication_server.dir/src/main.c.obj: C:/IT/deputy-on-track/authentication-server/src/main.c
-CMakeFiles/authentication_server.dir/src/main.c.obj: CMakeFiles/authentication_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/IT/deputy-on-track/authentication-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/authentication_server.dir/src/main.c.obj"
-	C:/gcc/mingw64/bin/gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/authentication_server.dir/src/main.c.obj -MF CMakeFiles/authentication_server.dir/src/main.c.obj.d -o CMakeFiles/authentication_server.dir/src/main.c.obj -c C:/IT/deputy-on-track/authentication-server/src/main.c
+CMakeFiles/authentication_server.dir/main.c.obj: CMakeFiles/authentication_server.dir/flags.make
+CMakeFiles/authentication_server.dir/main.c.obj: C:/IT/deputy-on-track/authentication-server/main.c
+CMakeFiles/authentication_server.dir/main.c.obj: CMakeFiles/authentication_server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/IT/deputy-on-track/authentication-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/authentication_server.dir/main.c.obj"
+	C:/gcc/mingw64/bin/gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/authentication_server.dir/main.c.obj -MF CMakeFiles/authentication_server.dir/main.c.obj.d -o CMakeFiles/authentication_server.dir/main.c.obj -c C:/IT/deputy-on-track/authentication-server/main.c
 
-CMakeFiles/authentication_server.dir/src/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/authentication_server.dir/src/main.c.i"
-	C:/gcc/mingw64/bin/gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:/IT/deputy-on-track/authentication-server/src/main.c > CMakeFiles/authentication_server.dir/src/main.c.i
+CMakeFiles/authentication_server.dir/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/authentication_server.dir/main.c.i"
+	C:/gcc/mingw64/bin/gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:/IT/deputy-on-track/authentication-server/main.c > CMakeFiles/authentication_server.dir/main.c.i
 
-CMakeFiles/authentication_server.dir/src/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/authentication_server.dir/src/main.c.s"
-	C:/gcc/mingw64/bin/gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:/IT/deputy-on-track/authentication-server/src/main.c -o CMakeFiles/authentication_server.dir/src/main.c.s
+CMakeFiles/authentication_server.dir/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/authentication_server.dir/main.c.s"
+	C:/gcc/mingw64/bin/gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:/IT/deputy-on-track/authentication-server/main.c -o CMakeFiles/authentication_server.dir/main.c.s
 
 # Object files for target authentication_server
 authentication_server_OBJECTS = \
-"CMakeFiles/authentication_server.dir/src/main.c.obj"
+"CMakeFiles/authentication_server.dir/main.c.obj"
 
 # External object files for target authentication_server
 authentication_server_EXTERNAL_OBJECTS =
 
-authentication_server.exe: CMakeFiles/authentication_server.dir/src/main.c.obj
+authentication_server.exe: CMakeFiles/authentication_server.dir/main.c.obj
 authentication_server.exe: CMakeFiles/authentication_server.dir/build.make
 authentication_server.exe: CMakeFiles/authentication_server.dir/linkLibs.rsp
 authentication_server.exe: CMakeFiles/authentication_server.dir/objects1.rsp

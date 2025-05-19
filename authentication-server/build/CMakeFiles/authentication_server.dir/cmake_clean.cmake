@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/authentication_server.dir/src/main.c.obj"
-  "CMakeFiles/authentication_server.dir/src/main.c.obj.d"
+  "CMakeFiles/authentication_server.dir/main.c.obj"
+  "CMakeFiles/authentication_server.dir/main.c.obj.d"
   "authentication_server.exe"
   "authentication_server.exe.manifest"
   "authentication_server.pdb"
