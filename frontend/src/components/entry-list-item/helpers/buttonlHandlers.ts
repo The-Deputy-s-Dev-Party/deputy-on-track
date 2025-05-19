@@ -3,8 +3,8 @@ import type {Dispatch, SetStateAction} from "react";
 import type {IMeal} from "../../../models/meal/IMeal.ts";
 
 export const buttonHandlers = {
-    handleDelete: async (name: string, callbackSetMeals: Dispatch<SetStateAction<IMeal[]>>) => {
-        await apiCalls.deleteMeal(name)
+    handleDelete: async (id: number, callbackSetMeals: Dispatch<SetStateAction<IMeal[]>>) => {
+        await apiCalls.deleteMeal(id)
         const updatedMeals = await apiCalls.getMeal()
         callbackSetMeals(updatedMeals)
     },

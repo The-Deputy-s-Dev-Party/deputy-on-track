@@ -2,35 +2,32 @@ import axios from "axios";
 import type {IEntryFormData} from "../../models/entry-form-data/IEntryFormData.ts";
 import type {IMeal} from "../../models/meal/IMeal.ts";
 import {sendData} from "./helpers/sendData.ts";
+import {AXIOS_URL} from "../../constants/constants.ts";
 
 export const axiosInstance = axios.create({
-    baseURL: `http://localhost:${import.meta.env.VITE_BACKEND_SERVER_PORT}`,
+    baseURL: AXIOS_URL,
     headers: {
         'Content-Type': 'application/json',
     },
 })
 
 export const apiCalls = {
-    createEntry: async ({name, energy_kcal, consumed_amount}: IEntryFormData): Promise<IMeal | undefined> => {
+    createEntry: async ({name, calories, weight,proteins,carbohydrates,fats}: IEntryFormData): Promise<IMeal | undefined> => {
                return await sendData({
-                   name,
-                   energy_kcal: energy_kcal,
-                   consumed_amount: consumed_amount,
-               }, 'post', '/entries')
+                   name, calories, weight,proteins,carbohydrates,fats
+               }, 'post', '/food')
 
     },
     getMeal: async (): Promise<IMeal[]> => {
-        const {data} = await axiosInstance.get<IMeal[]>('/entries')
+        const {data} = await axiosInstance.get<IMeal[]>('/food')
         return data
     },
-    deleteMeal: async (name: string): Promise<void> => {
-        await axiosInstance.delete(`/entries/${name}`)
+    deleteMeal: async (id: number): Promise<void> => {
+        await axiosInstance.delete(`/food/${id}`)
     },
-    updateMeal: async ({name, energy_kcal, consumed_amount}: IEntryFormData, title: string): Promise<IMeal | undefined> => {
+    updateMeal: async ({name, calories, weight,proteins,carbohydrates,fats}: IEntryFormData, id: number): Promise<IMeal | undefined> => {
         return await sendData({
-            name,
-            energy_kcal: energy_kcal,
-            consumed_amount: consumed_amount,
-        }, 'put', `/entries/${title}`)
+            name, calories, weight,proteins,carbohydrates,fats
+        }, 'put', `/food/${id}`)
     }
 }
