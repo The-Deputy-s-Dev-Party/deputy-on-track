@@ -1,6 +1,4 @@
 import axios from "axios";
-import type {IEntryFormData} from "../../models/entry-form-data/IEntryFormData.ts";
-import type {IMeal} from "../../models/meal/IMeal.ts";
 import {sendData} from "./helpers/sendData.ts";
 import {AXIOS_URL} from "../../constants/constants.ts";
 
@@ -12,22 +10,19 @@ export const axiosInstance = axios.create({
 })
 
 export const apiCalls = {
-    createEntry: async ({name, calories, weight,proteins,carbohydrates,fats}: IEntryFormData): Promise<IMeal | undefined> => {
-               return await sendData({
-                   name, calories, weight,proteins,carbohydrates,fats
-               }, 'post', '/food')
+    create: async <T,Response> (data:T,url:string): Promise<Response> => {
+               return await sendData<T,Response>(
+                   data, 'post', url)
 
     },
-    getMeal: async (): Promise<IMeal[]> => {
-        const {data} = await axiosInstance.get<IMeal[]>('/food')
+    getData: async<T>(url:string): Promise<T> => {
+        const {data} = await axiosInstance.get<T>(url)
         return data
     },
-    deleteMeal: async (id: number): Promise<void> => {
-        await axiosInstance.delete(`/food/${id}`)
+    delete: async (url:string): Promise<void> => {
+        await axiosInstance.delete(url)
     },
-    updateMeal: async ({name, calories, weight,proteins,carbohydrates,fats}: IEntryFormData, id: number): Promise<IMeal | undefined> => {
-        return await sendData({
-            name, calories, weight,proteins,carbohydrates,fats
-        }, 'put', `/food/${id}`)
+    update: async <T,Response>(data:T, url:string): Promise<Response> => {
+        return await sendData<T,Response>(data, 'put', url)
     }
 }

@@ -50,9 +50,13 @@
   border: 1px solid white;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
   border-radius: 10px;
   align-self: center;
+}
+
+.form p,.list-container p {
+  margin-top: 4px;
 }
 
 label{
@@ -70,13 +74,15 @@ label{
   padding: 20px;
   border-radius: 10px;
   max-height: 600px;
-  width: 500px;
+  min-width: 440px;
   overflow-y: auto;
 }
+
 
 .item-container{
   display: flex;
   width: 100%;
+  gap: 10px;
   justify-content: space-between;
   align-items: center;
 }
