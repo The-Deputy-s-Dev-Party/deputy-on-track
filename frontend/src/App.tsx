@@ -13,7 +13,6 @@ function App() {
         const updatedMeals = await apiCalls.getData<IMeal[]>(apiEndpoint);
         setMeals(updatedMeals);
     };
-
     if (meals.length === 0 && !isFetched) {
         setIsFetched(true)
         handleAddMeal()
