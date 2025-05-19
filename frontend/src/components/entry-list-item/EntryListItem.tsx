@@ -38,27 +38,27 @@ export const EntryListItem:FC<Props> = ({item,setMeals}) => {
                 <div className={'item-container'}>
                     <div>
                         <input type="text" {...register('name')} defaultValue={item.name}/> -
-                        <input type="text" {...register('calories', {
+                        <input type="number" {...register('calories', {
                             setValueAs: (val =>
                                     val === '' ? undefined : Number(val)
                             )
                         })} defaultValue={item.calories}/> -
-                        <input type="text" {...register('weight', {
+                        <input type="number" {...register('weight', {
                             setValueAs: (val =>
                                     val === '' ? undefined : Number(val)
                             )
                         })} defaultValue={item.weight}/> -
-                        <input type="text" {...register('proteins', {
+                        <input type="number" {...register('proteins', {
                             setValueAs: (val =>
                                     val === '' ? undefined : Number(val)
                             )
                         })} defaultValue={item.proteins}/> -
-                        <input type="text" {...register('fats', {
+                        <input type="number" {...register('fats', {
                             setValueAs: (val =>
                                     val === '' ? undefined : Number(val)
                             )
                         })} defaultValue={item.fats}/> -
-                        <input type="text" {...register('carbohydrates', {
+                        <input type="number" {...register('carbohydrates', {
                             setValueAs: (val =>
                                     val === '' ? undefined : Number(val)
                             )

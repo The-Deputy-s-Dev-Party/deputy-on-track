@@ -41,7 +41,7 @@ export const EntryForm = ({onAddMeal}: Props) => {
                 <div>
                     <label>
                         Enter calories
-                        <input type="text" {...register('calories', {
+                        <input type="number" {...register('calories', {
                             setValueAs: (val =>
                                     val === '' ? undefined : Number(val)
                             )
