@@ -1,9 +1,8 @@
-from datetime import datetime, date
+from datetime import date, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from starlette.requests import Request
 
 from app.db.database import get_async_session
 from app.models.food import Food as FoodModel
@@ -25,11 +24,26 @@ async def create_food(food: CreateFood, session: AsyncSession = Depends(get_asyn
     await session.refresh(db_food)
     return db_food
 
+
+@router.get('/last_week', response_model=list[FoodOut])
+async def food_of_last_seven_days(session: AsyncSession = Depends(get_async_session)):
+    today = date.today()
+    seven_days_ago = today - timedelta(days=7)
+
+    result = await session.execute(
+        select(FoodModel).filter(
+            FoodModel.created_at>=seven_days_ago,
+            FoodModel.created_at<today
+        )
+    )
+    food = result.scalars().all()
+    return food
+
+
 @router.get('/date', response_model=list[FoodOut])
-async def food_filter_by_date(request: Request, session: AsyncSession = Depends(get_async_session)):
-    print(await request.body())
+async def food_filter_by_date(session: AsyncSession = Depends(get_async_session)):
     date_now = date.today()
-    result = await session.execute(select(FoodModel).filter(FoodModel.created_at == str(date_now)))
+    result = await session.execute(select(FoodModel).filter(FoodModel.created_at == date_now))
     food = result.scalars().all()
     return food
 
@@ -38,6 +52,7 @@ async def get_food_by_id(food_id: int, session: AsyncSession = Depends(get_async
     food = await session.scalar(select(FoodModel).filter(FoodModel.id == food_id))
     if food is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Food not found')
+    print('TESSST', type(food.created_at))
     return food
 
 

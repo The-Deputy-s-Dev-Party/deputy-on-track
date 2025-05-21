@@ -7,5 +7,5 @@ port = os.environ.get('MYSQL_PORT')
 name = os.environ.get('MYSQL_DATABASE')
 
 def get_database_url() -> str:
-    url = f'mysql+asyncmy://{user}:{password}@{host}:{port}/{name}'
+    url = f'mysql+asyncmy://{user}:{password}@{host}:3306/{name}'
     return url
