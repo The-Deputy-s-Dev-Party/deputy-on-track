@@ -3,7 +3,7 @@ import {apiCalls} from "../../services/api/apiOperations.ts";
 import {foodValidatorSchema, type IEntryFormData} from "../../validator/FoodValidator.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import type {IMeal} from "../../models/meal/IMeal.ts";
-import {apiEndpoint} from "../../constants/constants.ts";
+import {apiEndpoints} from "../../constants/constants.ts";
 
 type Props = {
     onAddMeal: () => void;
@@ -20,7 +20,7 @@ export const EntryForm = ({onAddMeal}: Props) => {
 
     const onSubmit = async (formData: IEntryFormData) => {
         console.log(formData)
-        if (await apiCalls.create<IEntryFormData,IMeal>(formData,apiEndpoint) === undefined) {
+        if (await apiCalls.create<IEntryFormData,IMeal>(formData,apiEndpoints.food) === undefined) {
             return
         }
         onAddMeal();

@@ -24,5 +24,9 @@ export const apiCalls = {
     },
     update: async <T,Response>(data:T, url:string): Promise<Response> => {
         return await sendData<T,Response>(data, 'put', url)
+    },
+    getTodayMeals: async<T>(url:string):Promise<T>=>{
+        const {data} = await axiosInstance.get<T>(url)
+        return data
     }
 }

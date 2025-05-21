@@ -110,3 +110,9 @@ label{
   border-radius: 4px;
   width: 40px;
 }
+
+
+.right{
+  margin-top: 20px;
+  justify-content: flex-end;
+}
