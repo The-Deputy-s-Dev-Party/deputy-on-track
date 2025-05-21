@@ -2,22 +2,22 @@ import type {IMeal} from "../../models/meal/IMeal.ts";
 import {type FC, useMemo} from "react";
 import type {ITotals} from "../../models/meal/ITotals.ts";
 
-type Props ={
-    historyMeals:IMeal[];
+type Props = {
+    historyMeals: IMeal[];
 }
 
-export const TotalNutrition:FC<Props> = ({historyMeals}) => {
-    const totals:ITotals = useMemo(()=>{
+export const TotalNutrition: FC<Props> = ({historyMeals}) => {
+    const totals: ITotals = useMemo(() => {
         return historyMeals.reduce(
-            (acc:ITotals, meal):ITotals => ({
+            (acc: ITotals, meal): ITotals => ({
                 calories: acc.calories + Number(meal.calories),
                 fats: acc.fats + Number(meal.fats),
                 proteins: acc.proteins + Number(meal.proteins),
                 carbohydrates: acc.carbohydrates + Number(meal.carbohydrates),
             }),
-            { calories: 0, fats: 0, proteins: 0, carbohydrates: 0 }
+            {calories: 0, fats: 0, proteins: 0, carbohydrates: 0}
         );
-    },[historyMeals])
+    }, [historyMeals])
 
     return (
         <div className={'container right'}>

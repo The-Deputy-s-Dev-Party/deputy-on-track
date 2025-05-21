@@ -10,22 +10,22 @@ export const axiosInstance = axios.create({
 })
 
 export const apiCalls = {
-    create: async <T,Response> (data:T,url:string): Promise<Response> => {
-               return await sendData<T,Response>(
-                   data, 'post', url)
+    create: async <T, Response>(data: T, url: string): Promise<Response> => {
+        return await sendData<T, Response>(
+            data, 'post', url)
 
     },
-    getData: async<T>(url:string): Promise<T> => {
+    getData: async <T>(url: string): Promise<T> => {
         const {data} = await axiosInstance.get<T>(url)
         return data
     },
-    delete: async (url:string): Promise<void> => {
+    delete: async (url: string): Promise<void> => {
         await axiosInstance.delete(url)
     },
-    update: async <T,Response>(data:T, url:string): Promise<Response> => {
-        return await sendData<T,Response>(data, 'put', url)
+    update: async <T, Response>(data: T, url: string): Promise<Response> => {
+        return await sendData<T, Response>(data, 'put', url)
     },
-    getTodayMeals: async<T>(url:string):Promise<T>=>{
+    getTodayMeals: async <T>(url: string): Promise<T> => {
         const {data} = await axiosInstance.get<T>(url)
         return data
     }

@@ -20,7 +20,7 @@ export const EntryForm = ({onAddMeal}: Props) => {
 
     const onSubmit = async (formData: IEntryFormData) => {
         console.log(formData)
-        if (await apiCalls.create<IEntryFormData,IMeal>(formData,apiEndpoints.food) === undefined) {
+        if (await apiCalls.create<IEntryFormData, IMeal>(formData, apiEndpoints.food) === undefined) {
             return
         }
         onAddMeal();

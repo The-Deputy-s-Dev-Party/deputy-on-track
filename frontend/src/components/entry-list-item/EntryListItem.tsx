@@ -8,21 +8,25 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {apiEndpoints} from "../../constants/constants.ts";
 
 type Props = {
-    item:IMeal,
-    setMeals:Dispatch<SetStateAction<IMeal[]>>
-    setHistoryMeals:Dispatch<SetStateAction<IMeal[]>>
+    item: IMeal,
+    setMeals: Dispatch<SetStateAction<IMeal[]>>
+    setHistoryMeals: Dispatch<SetStateAction<IMeal[]>>
 }
 
 
-export const EntryListItem:FC<Props> = ({item,setMeals,setHistoryMeals}) => {
-    const {register,handleSubmit,formState:{errors}} = useForm<IEntryFormData>({resolver:zodResolver(foodValidatorSchema), mode: "onChange"})
+export const EntryListItem: FC<Props> = ({item, setMeals, setHistoryMeals}) => {
+    const {
+        register,
+        handleSubmit,
+        formState: {errors}
+    } = useForm<IEntryFormData>({resolver: zodResolver(foodValidatorSchema), mode: "onChange"})
     const [isEditable, setIsEditable] = useState(false)
 
-    const update = async (formData:IEntryFormData) => {
-        if(await apiCalls.update<IEntryFormData,IMeal>(formData,`${apiEndpoints.food}/${item.id}`)===undefined){
+    const update = async (formData: IEntryFormData) => {
+        if (await apiCalls.update<IEntryFormData, IMeal>(formData, `${apiEndpoints.food}/${item.id}`) === undefined) {
             return
         }
-        buttonHandlers.handleSave(setMeals,setHistoryMeals,setIsEditable)
+        buttonHandlers.handleSave(setMeals, setHistoryMeals, setIsEditable)
     }
 
     return (
@@ -31,10 +35,11 @@ export const EntryListItem:FC<Props> = ({item,setMeals,setHistoryMeals}) => {
                 {item.name} - {item.calories} - {item.weight} - {item.proteins} - {item.fats} - {item.carbohydrates}
                 <div className={'buttons'}>
                     <button onClick={() => buttonHandlers.handleToggleEdit(setIsEditable)}>Edit</button>
-                    <button onClick={() => buttonHandlers.handleDelete(item.id,setMeals,setHistoryMeals)}>Remove</button>
+                    <button onClick={() => buttonHandlers.handleDelete(item.id, setMeals, setHistoryMeals)}>Remove
+                    </button>
                 </div>
             </div>
-        ): (
+        ) : (
             <div>
                 <div className={'item-container'}>
                     <div>
