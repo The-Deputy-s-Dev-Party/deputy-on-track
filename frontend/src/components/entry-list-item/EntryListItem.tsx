@@ -15,11 +15,7 @@ export const EntryListItem: FC<Props> = ({item}) => {
     const dispatch = useAppDispatch();
     const [isEditable, setIsEditable] = useState(false);
 
-    const {
-        register,
-        handleSubmit,
-        formState: {errors}
-    } = useForm<IEntryFormData>({
+    const {register, handleSubmit, formState: {errors}} = useForm<IEntryFormData>({
         resolver: zodResolver(foodValidatorSchema),
         mode: "onChange"
     });
