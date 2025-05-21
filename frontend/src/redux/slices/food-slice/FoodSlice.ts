@@ -8,10 +8,9 @@ import {apiEndpoints} from "../../../constants/constants.ts";
 type FoodSliceType = {
     meals: IMeal[],
     todayMeals: IMeal[],
-    isFetched: boolean
 }
 
-const foodInitialState: FoodSliceType = {meals: [], todayMeals: [], isFetched: false}
+const foodInitialState: FoodSliceType = {meals: [], todayMeals: []}
 
 const loadFood = createAsyncThunk<IMeal[]>(
     'foodSlice/loadFood',

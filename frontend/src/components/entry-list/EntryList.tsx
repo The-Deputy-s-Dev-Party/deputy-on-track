@@ -6,6 +6,7 @@ type Props = {
 }
 
 export const EntryList = ({meals}: Props) => {
+
     return (
         <div className={"list-container"}>
             {meals.map((meal, index) => (

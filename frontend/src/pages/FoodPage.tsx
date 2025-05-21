@@ -9,16 +9,14 @@ import type {IEntryFormData} from "../validator/FoodValidator.ts";
 
 const FoodPage = () => {
     const dispatch = useAppDispatch();
-    const {meals, todayMeals, isFetched} = useAppSelector(({foodSlice}) => foodSlice);
+    const {meals, todayMeals} = useAppSelector(({foodSlice}) => foodSlice);
 
     useEffect(() => {
-        if (!isFetched) {
             dispatch(foodSliceActions.loadFood());
             dispatch(foodSliceActions.loadTodayFood());
-        }
-    }, [dispatch, isFetched]);
+    }, [dispatch]);
 
-    const handleAddMeal = async (formData: IEntryFormData) => {
+    const handleAddMeal = async (formData:IEntryFormData) => {
         await dispatch(foodSliceActions.addMeal(formData));
     };
 
@@ -26,7 +24,7 @@ const FoodPage = () => {
         <div>
             <div className={'container'}>
                 <EntryForm onAddMeal={handleAddMeal}/>
-                <EntryList meals={meals}/>
+                <EntryList meals={meals} />
             </div>
             <TotalNutrition todayMeals={todayMeals}/>
         </div>
