@@ -1,3 +1,6 @@
 export const AXIOS_URL = '/api'
 
-export const apiEndpoint = '/food'
+export const apiEndpoints = {
+    food: '/food',
+    foodByDate: '/food/date'
+}
