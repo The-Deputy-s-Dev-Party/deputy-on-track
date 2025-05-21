@@ -4,16 +4,12 @@ import type {IMeal} from "../../../models/meal/IMeal.ts";
 import {apiEndpoints} from "../../../constants/constants.ts";
 
 export const buttonHandlers = {
-    handleDelete: async (id: number, callbackSetMeals: Dispatch<SetStateAction<IMeal[]>>, callbackSetHistoryMeals: Dispatch<SetStateAction<IMeal[]>>) => {
-        await apiCalls.delete(`${apiEndpoints.food}/${id}`)
-        const [updatedMeals, todayMeals] = await Promise.all([
-            apiCalls.getData<IMeal[]>(apiEndpoints.food),
-            apiCalls.getTodayMeals<IMeal[]>(apiEndpoints.foodByDate)
-
-        ])
-        callbackSetMeals(updatedMeals)
-        callbackSetHistoryMeals(todayMeals)
-    },
+    // handleDelete: async (id: number, dispatchMeals:PayloadAction<IMeal>, dispatchTodayMeals: Dispatch<SetStateAction<IMeal[]>>) => {
+    //     await apiCalls.delete(`${apiEndpoints.food}/${id}`)
+    //     const {meals, todayMeals} = useAppSelector(({foodSlice}) => foodSlice)
+    //     dispatchMeals(meals)
+    //     dispatchTodayMeals(todayMeals)
+    // },
     handleToggleEdit: (callbackEditToggle: Dispatch<SetStateAction<boolean>>) => {
         callbackEditToggle(prevState => !prevState)
     },
